@@ -13,18 +13,18 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh 'mvn clean compile'
+                sh 'export PATH=$MAVEN_HOME/bin:$PATH && mvn clean compile'
             }
         }
         stage('test') {
             steps {
-                sh 'mvn test'
+                sh 'export PATH=$MAVEN_HOME/bin:$PATH && mvn test'
                 junit '**/target/surefire-reports/TEST-*.xml'
             }
         }
         stage('Package') {
             steps {
-                sh 'mvn package'
+                sh 'export PATH=$MAVEN_HOME/bin:$PATH && mvn package'
             }
         }
     }
